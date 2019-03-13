@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Quick {
   public static void main(String[] args) {
-    int[] data = {3, 0, 5, 9, 7, 6, 8};
+    int[] data = {2, 10, 15, 23, 0,  5};
     System.out.println(partition(data, 1, data.length-1));
     for (int i = 0; i < data.length; i++) {
       System.out.print(data[i]);
@@ -31,6 +31,7 @@ public class Quick {
     if (data[0] <= data[start]) {
       data[0] = data[start-1];
       data[start-1] = n;
+      start--;
     } else {
       data[0] = data[start];
       data[start] = n;
