@@ -17,46 +17,47 @@ public class Quick {
 
   public static int partition(int[] data, int start, int end) {
     Random rand = new Random();
-    int k = rand.nextInt(end - start + 2) + start-1;
+    int k = rand.nextInt(end - start + 1) + start;
     //System.out.println(data[k]);
-    int storage = start-1;
-    int j = data[storage];
-    data[storage] = data[k];
+    int st = start + 1;
+    int e = end;
+    int j = data[start];
+    data[start] = data[k];
     data[k] = j;
-    while (start != end) {
+    while (st != e) {
       int n = 0;
-      if (data[storage] < data[start]) {
-        n = data[start]; //swap the target number with the end
-        data[start] = data[end];
-        data[end] = n;
-        end--;
-      } else if (data[storage] == data[start]) {
+      if (data[start] < data[st]) {
+        n = data[st]; //swap the target number with the end
+        data[st] = data[e];
+        data[e] = n;
+        e--;
+      } else if (data[start] == data[st]) {
         if (rand.nextInt(100) < 50) {
-          start++;
+          st++;
         } else {
-          n = data[start]; //swap the target number with the end
-          data[start] = data[end];
-          data[end] = n;
-          end--;
+          n = data[st]; //swap the target number with the end
+          data[st] = data[e];
+          data[e] = n;
+          e--;
         }
       } else {
-        start++;
+        st++;
       }
     }
-    int n = data[storage];
-    if (data[storage] <= data[start]) {
-      data[storage] = data[start-1];
-      data[start-1] = n;
-      start--;
+    int n = data[start];
+    if (data[start] <= data[st]) {
+      data[start] = data[st-1];
+      data[st-1] = n;
+      st--;
     } else {
-      data[storage] = data[start];
-      data[start] = n;
+      data[start] = data[st];
+      data[st] = n;
     }
-    return start;
+    return st;
   }
 
   public static int quickselect(int []data, int k){
-    int lo = 1;
+    int lo = 0;
     int hi = data.length - 1;
     int pivot = partition(data, lo, hi);
     while (pivot != k) {
