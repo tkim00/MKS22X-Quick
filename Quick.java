@@ -9,7 +9,7 @@ public class Quick {
       System.out.print("" + data[i] + " ");
     }
     System.out.println(" ");
-    System.out.println(quickselect(data, 4));
+    System.out.println(quickselect(data, 3));
     for (int i = 0; i < data.length; i++) {
       System.out.print("" + data[i] + " ");
     }
@@ -17,7 +17,7 @@ public class Quick {
 
   public static int partition(int[] data, int start, int end) {
     Random rand = new Random();
-    int k = rand.nextInt(data.length);
+    int k = rand.nextInt(end - start + 2) + start-1;
     //System.out.println(data[k]);
     int storage = start-1;
     int j = data[storage];
