@@ -28,13 +28,23 @@ public class Quick {
   }
 
   public static int partition(int[] data, int start, int end) {
-    int pivot = data[start];
+    Random rand = new Random();
+    int k = rand.nextInt(end - start + 1) + start;
+    int pivot = data[k];
+    swap(data, k, start);
     int st = start + 1;
     int e = end;
     while (st < e) {
       if (pivot < data[st]) {
         swap(data, st, e);
         e--;
+      } else if (pivot == data[st]) {
+        if (rand.nextInt(100) < 50) {
+          st++;
+        } else {
+          swap(data, st, e);
+          e--;
+        }
       } else {
         st++;
       }
@@ -64,5 +74,9 @@ public class Quick {
       pivot = partition(data, lo, hi);
     }
     return pivot;
+  }
+
+  public static void quicksort(int[] data) {
+
   }
 }
